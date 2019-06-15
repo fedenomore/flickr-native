@@ -3,12 +3,11 @@ import { Text, View, Image, Linking } from 'react-native';
 import Card from './Card';
 import CardSection from './CardSection';
 import Button from './Button';
-// import { Actions } from 'react-native-router-flux';
+import NavigationService from '../services/NavigationService'
 
 const AlbumDetail = ({ title, albumId }) => {
   const {
     headerContentStyle,
-    
     headerTextStyle,
     imageStyle
   } = styles;
@@ -24,7 +23,7 @@ const AlbumDetail = ({ title, albumId }) => {
 
       <CardSection>
         {/*<Button onPress={() => Actions.photoList({albumId:albumId})}>*/}
-          <Button onPress={() => this.props.navigation.navigate('Search')}>
+        <Button title="Back" onPress={() => { NavigationService.navigate('Search')}} >;
           See Now!
         </Button>
       </CardSection>

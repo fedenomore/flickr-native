@@ -7,6 +7,7 @@ import AlbumList from "./src/components/AlbumList";
 import PhotoList from "./src/components/PhotoList";
 import Search from "./src/components/Search";
 import RandomPhotoGrid from "./src/components/RandomPhotoGrid";
+import NavigationService from "./src/services/NavigationService";
 
 const tabBarIcon = name => ({ tintColor }) => (
     <MaterialIcons
@@ -58,6 +59,8 @@ const AppNavigator = createAppContainer(BottomMaterialTabs);
 
 export default class App extends Component {
   render() {
-    return <AppNavigator />;
+    return <AppNavigator ref={navigatorRef => {
+        NavigationService.setTopLevelNavigator(navigatorRef);
+    }} />;
   }
 }
