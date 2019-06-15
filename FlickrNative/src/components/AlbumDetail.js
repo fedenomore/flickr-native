@@ -3,7 +3,7 @@ import { Text, View, Image, Linking } from 'react-native';
 import Card from './Card';
 import CardSection from './CardSection';
 import Button from './Button';
-import { Actions } from 'react-native-router-flux';
+// import { Actions } from 'react-native-router-flux';
 
 const AlbumDetail = ({ title, albumId }) => {
   const {
@@ -23,7 +23,8 @@ const AlbumDetail = ({ title, albumId }) => {
       </CardSection>
 
       <CardSection>
-        <Button onPress={() => Actions.photoList({albumId:albumId})}>
+        {/*<Button onPress={() => Actions.photoList({albumId:albumId})}>*/}
+          <Button onPress={() => this.props.navigation.navigate('Search')}>
           See Now!
         </Button>
       </CardSection>

@@ -1,39 +1,21 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import {Router, Scene} from "react-native-router-flux";
 import AlbumList from "./src/components/AlbumList";
 import PhotoList from "./src/components/PhotoList";
+import {createAppContainer, createBottomTabNavigator} from "react-navigation";
+import Search from "./src/components/Search";
 
-type Props = {};
-export default class App extends Component<Props> {
+const BottomTabNavigator = createBottomTabNavigator({
+  Search: {screen: Search},
+  AlbumList: {screen: AlbumList},
+  PhotoList: {screen: PhotoList}
+}),;
+const AppNavigator = createAppContainer(BottomTabNavigator);
+
+export default class App extends Component {
   render() {
     return (
-
-        <Router>
-          <Scene key="root">
-            <Scene key="albumList" component={AlbumList} title="Albums" initial={true}/>
-            <Scene key="photoList" component={PhotoList} title="Photos"/>
-          </Scene>
-        </Router>
+      <AppNavigator />
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
