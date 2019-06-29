@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { ScrollView, FlatList, Text, View } from 'react-native';
 import axios from 'axios';
 import PhotoDetail from './PhotoDetail';
 
@@ -32,10 +32,15 @@ class PhotoList extends Component {
     }
 
     return (
+
         <View style={{ flex: 1 }}>
-            <ScrollView>
-                {this.renderAlbums()}
-            </ScrollView>
+            <FlatList data={this.state.photos}
+            renderItem={({item}) =>  <PhotoDetail key={item.id} title={item.title}
+                imageUrl={`https://farm${item.farm}.staticflickr.com/${item.server}/${item.id}_${item.secret}.jpg`} />}
+            />
+            {/*<ScrollView>*/}
+              {/*{this.renderAlbums()}*/}
+            {/*</ScrollView>*/}
         </View>
     );
   }
