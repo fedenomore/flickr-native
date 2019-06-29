@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { StyleSheet } from 'react-native';
-import {createAppContainer} from "react-navigation";
+import {createAppContainer, createStackNavigator, createSwitchNavigator} from "react-navigation";
 import {createMaterialBottomTabNavigator} from "react-navigation-material-bottom-tabs";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import AlbumList from "./src/components/AlbumList";
@@ -8,6 +8,9 @@ import PhotoList from "./src/components/PhotoList";
 import Search from "./src/components/Search";
 import RandomPhotoGrid from "./src/components/RandomPhotoGrid";
 import NavigationService from "./src/services/NavigationService";
+import {Router, Scene, Stack} from "react-native-router-flux";
+import RouterExtra from "./src/components/RouterExtra";
+
 
 const tabBarIcon = name => ({ tintColor }) => (
     <MaterialIcons
@@ -18,8 +21,13 @@ const tabBarIcon = name => ({ tintColor }) => (
     />
 );
 
+const MainScreenNavigator = createStackNavigator({
+    PhotoList: { screen: PhotoList },
+});
+
 const BottomMaterialTabs = createMaterialBottomTabNavigator(
     {
+
       Search: {
         screen: Search,
         navigationOptions: {
@@ -38,7 +46,7 @@ const BottomMaterialTabs = createMaterialBottomTabNavigator(
         title: 'Favorites',
         navigationOptions: {
           tabBarIcon: tabBarIcon("favorite"),
-           tabBarColor: '#d81b60',
+            tabBarColor: '#d81b60',
         }},
     },
     {
@@ -55,12 +63,20 @@ const BottomMaterialTabs = createMaterialBottomTabNavigator(
     }
 );
 
-const AppNavigator = createAppContainer(BottomMaterialTabs);
+const SwitchNavigator = createSwitchNavigator ({
+    BottomMaterialTabs: BottomMaterialTabs,
+    MainScreenNavigator: MainScreenNavigator,
+});
+
+const AppNavigator = createAppContainer(SwitchNavigator);
 
 export default class App extends Component {
-  render() {
-    return <AppNavigator ref={navigatorRef => {
-        NavigationService.setTopLevelNavigator(navigatorRef);
-    }} />;
-  }
+    render() {
+        // return <AppNavigator ref={navigatorRef => {
+        //     NavigationService.setTopLevelNavigator(navigatorRef);
+        // }} />;
+        return <RouterExtra/>;
+
+
+    }
 }

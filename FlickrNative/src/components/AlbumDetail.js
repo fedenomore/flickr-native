@@ -4,6 +4,7 @@ import Card from './Card';
 import CardSection from './CardSection';
 import Button from './Button';
 import NavigationService from '../services/NavigationService'
+import { Actions } from 'react-native-router-flux';
 
 const AlbumDetail = ({ title, albumId }) => {
   const {
@@ -22,14 +23,19 @@ const AlbumDetail = ({ title, albumId }) => {
       </CardSection>
 
       <CardSection>
-        {/*<Button onPress={() => Actions.photoList({albumId:albumId})}>*/}
-        <Button title="Back" onPress={() => { NavigationService.navigate('Search')}} >;
+        <Button title="See more" style={styles.btnPhotoDetail}
+                onPress={() => {
+                  Actions.photoList({albumId:albumId});
+                  // NavigationService.navigate('PhotoList', {title:'PhotoList',albumId:albumId})
+                }
+                } >
           See Now!
         </Button>
       </CardSection>
     </Card>
   );
 };
+
 
 const styles = {
   headerContentStyle: {
@@ -53,6 +59,10 @@ const styles = {
     height: 300,
     flex: 1,
     width: null
+  },
+  btnPhotoDetail: {
+    backgroundColor: '#d81b60',
+    color: '#d81b60'
   }
 };
 
