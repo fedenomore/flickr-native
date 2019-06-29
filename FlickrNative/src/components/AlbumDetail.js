@@ -25,10 +25,9 @@ const AlbumDetail = ({ title, albumId }) => {
       <CardSection>
         <Button title="See more" style={styles.btnPhotoDetail}
                 onPress={() => {
-                  Actions.photoList({albumId:albumId});
-                  // NavigationService.navigate('PhotoList', {title:'PhotoList',albumId:albumId})
-                }
-                } >
+                  // Actions.photoList({albumId:albumId});
+                  NavigationService.navigate('PhotoList', {title:'PhotoList',albumId:albumId})
+                }}>
           See Now!
         </Button>
       </CardSection>

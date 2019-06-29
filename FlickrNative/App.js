@@ -72,10 +72,10 @@ const AppNavigator = createAppContainer(SwitchNavigator);
 
 export default class App extends Component {
     render() {
-        // return <AppNavigator ref={navigatorRef => {
-        //     NavigationService.setTopLevelNavigator(navigatorRef);
-        // }} />;
-        return <RouterExtra/>;
+        return <AppNavigator ref={navigatorRef => {
+            NavigationService.setTopLevelNavigator(navigatorRef);
+        }} />;
+        // return <RouterExtra/>;
 
 
     }

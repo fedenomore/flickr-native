@@ -3,6 +3,7 @@ import { Text, View, Image, Linking } from 'react-native';
 import Card from './Card';
 import CardSection from './CardSection';
 import Button from './Button';
+import NavigationService from "../services/NavigationService";
 
 const PhotoDetail = ({ title, imageUrl }) => {
   const {
